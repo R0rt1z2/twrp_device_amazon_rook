@@ -1,0 +1,61 @@
+#
+# Copyright (C) 2025 The Team Win Recovery Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+DEVICE_PATH := device/amazon/rook
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 := arm64
+TARGET_CPU_VARIANT := generic
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a7
+
+# Kernel
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 firmware_class.path=/system/vendor/firmware
+BOARD_KERNEL_BASE := 0x40078000
+BOARD_KERNEL_OFFSET := 0
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_MKBOOTIMG_ARGS := --base 0x40078000 --kernel_offset 0x00008000 --ramdisk_offset 0x291cce00 --second_offset 0x00e80000 --tags_offset 0x07f88000
+
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/Image.gz-dtb
+
+# Partitions
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+
+# Platform
+TARGET_BOARD_PLATFORM := mt8163
+TARGET_BOOTLOADER_BOARD_NAME := mt8163
+TARGET_NO_BOOTLOADER := true
+
+# Recovery
+RECOVERY_VARIANT := twrp
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun0/file
+
+# Screen
+TARGET_SCREEN_WIDTH := 480
+TARGET_SCREEN_HEIGHT := 480
+
+# TWRP
+TW_THEME := spot_mdpi
+
+TW_EXCLUDE_TWRPAPP := true
+TW_EXCLUDE_SUPERSU := true
+
+TW_NO_LEGACY_PROPS := true
+TW_HACKED_BL_BUTTON := true
+
+ALLOW_MISSING_DEPENDENCIES := true
